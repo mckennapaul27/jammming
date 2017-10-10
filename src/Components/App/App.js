@@ -1,21 +1,39 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
-import SearchBar from './SearchBar';
-import SearchResults from './SearchResults';
-import Playlist from './Playlist';
+import SearchBar from '../SearchBar/SearchBar';
+import SearchResults from '../SearchResults/SearchResults';
+import PlayList from '../PlayList/PlayList';
 
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      SearchResults: [
+        {
+          name: 'Despacito'
+        },
+        {
+          artist: "Luis Fonsi"
+        },
+        {
+          album: "Paso a Paso"
+        }
+      ]
+    }
+  }
+
   render() {
     return (
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div class="App">
-          <!-- Add a SearchBar component -->
+          <SearchBar/>
           <div className="App-playlist">
-            <!-- Add a SearchResults component -->
-            <!-- Add a Playlist component -->
+            <SearchResults SearchResults={this.state.SearchResults}/>
+            <PlayList />
           </div>
         </div>
       </div>
