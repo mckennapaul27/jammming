@@ -12,18 +12,28 @@ class App extends Component {
     super(props);
     this.state = {
       searchResults: [
-        {name:"Despacito"},
-        {artist:"Luis Fonsi"},
-        {album:"Las Plataformas"}
+        {
+        name:"Despacito",
+        artist:"Luis Fonsi",
+        album:"Las Plataformas"
+        },
       ],
       playlistName: "myPlayList",
       playlistTracks: [],
+    };
+    this.addTrack = this.addTrack.bind(this);
+  }
+
+
+    addTrack(track) {
+      let tracks = this.state.playlistTracks;
+      if(tracks.includes(track)) {
+        console.log('Track already in Playlist');
+      } else {
+        tracks.push(track);
+        this.setState({playlistTracks: tracks});
+      }
     }
-  }
-
-  addTrack(track) {
-
-  }
 
 
   render() {
@@ -33,7 +43,7 @@ class App extends Component {
         <div className="App">
           <SearchBar/>
           <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults}/>
+            <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
             <PlayList playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} />
           </div>
         </div>
