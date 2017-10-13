@@ -17,11 +17,17 @@ class App extends Component {
         artist:"Luis Fonsi",
         album:"Las Plataformas"
         },
+        {
+        name:"Shape of You",
+        artist:"Ed Sheeran",
+        album:"Atlantic"
+        },
       ],
       playlistName: "myPlayList",
       playlistTracks: [],
     };
     this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
   }
 
 
@@ -35,6 +41,12 @@ class App extends Component {
       }
     }
 
+    removeTrack(track) {
+      let tracks = this.state.playlistTracks;
+      tracks = tracks.filter(currTrack => currTrack.track.id !== track.track.id);
+      this.setState({playlistTracks: tracks});
+    }
+
 
   render() {
     return (
@@ -44,7 +56,7 @@ class App extends Component {
           <SearchBar/>
           <div className="App-playlist">
             <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
-            <PlayList playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} />
+            <PlayList playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack}/>
           </div>
         </div>
       </div>
