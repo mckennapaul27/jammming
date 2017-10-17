@@ -23,11 +23,12 @@ class App extends Component {
         album:"Atlantic"
         },
       ],
-      playlistName: "myPlayList",
+      playlistName: "p",
       playlistTracks: [],
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
+    this.updatePlaylistName = this.updatePlaylistName.bind(this);
   }
 
 
@@ -43,8 +44,12 @@ class App extends Component {
 
     removeTrack(track) {
       let tracks = this.state.playlistTracks;
-      tracks = tracks.filter(currTrack => currTrack.track.id !== track.track.id);
+      tracks = tracks.filter(currTrack => currTrack.id !== track.id);
       this.setState({playlistTracks: tracks});
+    }
+
+    updatePlaylistName(name) {
+      this.setState({playlistName: ''});
     }
 
 
@@ -56,7 +61,7 @@ class App extends Component {
           <SearchBar/>
           <div className="App-playlist">
             <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
-            <PlayList playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack}/>
+            <PlayList onNameChange={this.updatePlaylistName} playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack} />
           </div>
         </div>
       </div>
