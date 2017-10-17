@@ -49,7 +49,8 @@ class App extends Component {
     }
 
     updatePlaylistName(name) {
-      this.setState({playlistName: ''});
+      this.setState({playlistName: name});
+      console.log(this.state.playlistName);
     }
 
 
